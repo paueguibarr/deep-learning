@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Deep Learning Hub</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" sizes="32x32" href="/icon3.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/icon3.png">
+
+</head>
+
+<body>
+  <!-- Sticky nav -->
+  <header class="nav">
+    <div class="nav-inner">
+      <a class="nav-link" href="#">Home</a>
+      <a class="nav-link" href="https://paueguibarr.github.io/index.html">CV Site</a>
+
+      <!-- This is where the name will "land" -->
+      <div class="nav-name-slot" aria-hidden="true">
+        <div id="nameDock">
+          <span id="headerTitle" class="header-title"></span>
+        </div>
+      </div>
+
+      <div class="nav-right">
+        <a class="nav-link" href="#projects">Projects</a>
+        <a class="nav-link nav-btn" href="https://-hawk-.notion.site/Spring-2026-Deep-Learning-Class-Schedule-2efdfc3276088041be51f1dc2dc14285" target="_blank" rel="noreferrer">Class Site</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <main id="home">
+    <section class="hero">
+      <!-- Background grid -->
+      <div class="bg-grid" aria-hidden="true"></div>
+
+      <!-- The big name that animates -->
+      <h1 id="heroName" class="hero-name">Deep Learning Project Hub </h1>
+      <p class="hero-sub">By Paulina Eguibar Ortega</p>
+
+      <div class="scroll-hint" aria-hidden="true">
+        <div class="ring">Projects</div>
+        <div class="chev">⌄</div>
+      </div>
+    </section>
+
+    <section id="projects" class="projects">
+      <div class="projects-header-wrap">
+        <h2 class="projects-header">Projects Section</h2>
+      </div>
+    
+      <!-- Project 1 -->
+      <article class="project-row">
+        <div class="project-media">
+          <img src="images/project1.png" alt="Project 1 screenshot">
+        </div>
+    
+        <div class="project-content">
+          <div class="project-pill">Project 1</div>
+    
+          <h3 class="project-title">Evolution of Convolutional Neural Networks</h3>
+    
+          <p class="project-description">
+            Implementing and modernizing LeNet, Batch Normalization, and ResNet
+          </p>
+    
+          <div class="project-stats">
+            <div class="stat">
+              <div class="stat-value">LeNet</div>
+              <div class="stat-label">Implementation</div>
+            </div>
+            <div class="stat">
+              <div class="stat-value">CNN</div>
+              <div class="stat-label">Architecture</div>
+            </div>
+          </div>
+    
+          <a class="project-cta" href="/1/index.html">Full Implemention</a>
+        </div>
+      </article>
+    
+      <!-- Project 2 -->
+      <article class="project-row">
+        <div class="project-media">
+          <img src="images/project2.png" alt="Project 2 screenshot">
+        </div>
+    
+        <div class="project-content">
+          <div class="project-pill">Project 2</div>
+    
+          <h3 class="project-title">TBD</h3>
+    
+          <p class="project-description">
+            TBD
+          </p>
+    
+          <div class="project-stats">
+            <div class="stat">
+              <div class="stat-value">TBD</div>
+              <div class="stat-label">TBD</div>
+            </div>
+            <div class="stat">
+              <div class="stat-value">TBD</div>
+              <div class="stat-label">TBD</div>
+            </div>
+          </div>
+    
+          <a class="project-cta" href="#">Full Impkementation</a>
+        </div>
+      </article>
+    </section>
+    
+
+    <footer class="footer">
+      <p>© <span id="year"></span> Paulina Eguibar</p>
+    </footer>
+  </main>
+
+  <script>
+    const nav = document.querySelector(".nav");
+    const heroName = document.getElementById("heroName");
+    const headerTitle = document.getElementById("headerTitle");
+    const dock = document.getElementById("nameDock");
+    const year = document.getElementById("year");
+    year.textContent = new Date().getFullYear();
+  
+    // Put the same text in the header title
+    headerTitle.textContent = heroName.textContent;
+
+    function updateNavShadow() {
+      nav.classList.toggle("scrolled", window.scrollY > 8);
+    }
+
+    updateNavShadow();
+    window.addEventListener("scroll", updateNavShadow, { passive: true });
+  
+    function clamp01(x){ return Math.max(0, Math.min(1, x)); }
+    function lerp(a,b,t){ return a + (b-a)*t; }
+  
+    // We measure start/end positions WITHOUT transform so it doesn't drift.
+    function measureCenters() {
+      const prev = heroName.style.transform;
+      heroName.style.transform = "none";
+      const from = heroName.getBoundingClientRect();
+      heroName.style.transform = prev;
+  
+      const to = dock.getBoundingClientRect();
+  
+      return {
+        fromX: from.left + from.width/2,
+        fromY: from.top + from.height/2,
+        toX: to.left + to.width/2,
+        toY: to.top + to.height/2
+      };
+    }
+  
+    let centers = measureCenters();
+  
+    function animate() {
+      const end = 280;                // scroll distance to fully dock
+      const t = clamp01(window.scrollY / end);
+  
+      const dx = centers.toX - centers.fromX;
+      const dy = centers.toY - centers.fromY;
+  
+      // Move and shrink hero title toward dock
+      const scale = lerp(1, 0.30, t);
+      heroName.style.transform = `translate(${dx*t}px, ${dy*t}px) scale(${scale})`;
+  
+      // Cross-fade into the header title (so it never "disappears")
+      const heroOpacity = lerp(1, 0, Math.max(0, (t - 0.55) / 0.45));  // fades out late
+      const headOpacity = lerp(0, 1, Math.max(0, (t - 0.55) / 0.45));  // fades in late
+      heroName.style.opacity = String(heroOpacity);
+      headerTitle.style.opacity = String(headOpacity);
+  
+      // Prevent hero title from blocking clicks once it's basically docked
+      heroName.style.pointerEvents = (t > 0.92) ? "none" : "auto";
+    }
+  
+    animate();
+    window.addEventListener("scroll", animate, { passive: true });
+    window.addEventListener("resize", () => {
+      centers = measureCenters();
+      animate();
+    });
+  </script>
+  
+
+
+</body>
+</html>
