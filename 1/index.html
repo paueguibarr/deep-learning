@@ -1,0 +1,480 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Project 1</title>
+  <link rel="stylesheet" href="../styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" sizes="32x32" href="../icon3.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../icon3.png">
+
+</head>
+
+
+<body>
+  <!-- Sticky nav -->
+  <header class="nav">
+    <div class="nav-inner">
+      <a class="nav-link" href="../index.html">Home</a>
+      <a class="nav-link" href="https://paueguibarr.github.io/index.html">CV Site</a>
+
+      <!-- This is where the name will "land" -->
+      <div class="nav-name-slot" aria-hidden="true">
+        <div id="nameDock">
+          <span id="headerTitle" class="header-title"></span>
+        </div>
+      </div>
+
+      <div class="nav-right">
+        <a class="nav-link" href="#projects">Projects</a>
+        <a class="nav-link nav-btn" href="https://-hawk-.notion.site/Spring-2026-Deep-Learning-Class-Schedule-2efdfc3276088041be51f1dc2dc14285" target="_blank" rel="noreferrer">Class Site</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <main id="home">
+    <section class="hero">
+      <!-- Background grid -->
+      <div class="bg-grid" aria-hidden="true"></div>
+
+      <!-- The big name that animates -->
+      <h1 id="heroName" class="hero-name">Evolution of Convolutional Neural Networks </h1>
+      <p class="hero-sub">Implementing and modernizing LeNet, Batch Normalization, and ResNet</p>
+
+      <div class="scroll-hint" aria-hidden="true">
+        <div class="ring">Read More</div>
+        <div class="chev">⌄</div>
+      </div>
+    </section>
+
+    <div class="page">
+
+    <section id="projects" class="projects">
+      <div class="projects-header-wrap">
+        <h2 class="projects-header">Objectives</h2>
+      </div>
+    </section>
+    
+    <section class="bubble">
+    <ul class="bubble-list">
+        <li>This project aims to guide students through the development of Convolutional Neural Networks (CNNs) by implementing and modernizing network architectures.</li>
+        <li>Students will begin by implementing LeNet (1998), one of the earliest CNN models, and gradually introduce key improvements that have shaped modern deep learning such as activation function, pooling, and batch normalization. </li>
+        <li>By following this structured progression, students will gain hands-on experience with the fundamental advancements in CNNs leading up to the AlexNet breakthrough (2012).</li>
+    </ul>
+    </section>
+
+    <section class="projects">
+    <div class="projects-header-wrap">
+        <h2 class="projects-header">Part 1: Implementing and modernizing LeNet</h2>
+    </div>
+  </section>
+  
+    <section class="bubble">
+      <b>Use different epochs (5, 10, 20) to train your LeNet, plot the training loss, validation loss, and validation accuracy of each training process, and discuss how changing training epochs affects the performance. </b>
+
+
+        <div class="bubble-img-grid">
+            <figure class="bubble-shot">
+              <img src="images/epoch_5.png" alt="5 epochs">
+              <figcaption>5 epochs</figcaption>
+            </figure>
+        
+            <figure class="bubble-shot">
+              <img src="images/epoch_10.png" alt="10 epochs">
+              <figcaption>10 epochs</figcaption>
+            </figure>
+        
+            <figure class="bubble-shot">
+              <img src="images/epoch_20.png" alt="20 epochs">
+              <figcaption>20 epochs</figcaption>
+            </figure>
+
+          </div>
+
+          <p>From the plots we can notice that with 5 epochs, the training loss decreases, but not significantly. Aditionally, the validation loss decreases only a little, and the accuracy increases slowly, capping at around 60%. From these results we can conclude that our model is undertrained. It has not seen the data enough times to learn strong feature representations, furthermore, the loss is still high and the accuracy moderate. Our model is underfitted since it has not converged yet and has not caputred all the patterns in the data. If we switch to the plot with 10 epochs, we see that the training loss drops much more significantly. The validation loss also decreases consistently, and the accuracy incerases all the way to around 70%. This tells us that this is a much better training duration. Our model has learned stronger feature representations and is generalizing well, which we can see from how the training and validation losses are similar). An important aspect to note is that our model has not started to overfit. FInally, in the plot with 20 epochs, we notice that the training loss keeps decreasing. On the other hand, the validation loss keeps decreasing but starts to flatten, and accuracy increases only slightly (to around 75%-78%). We can notice a small gap between training and validation loss. What this is telling us is that we are starting to see signs of overfitting. The model is starting to memorize the data more than learning new features, however, the overfitting is still very small. In sum, going from 5 to 10 epochs significantly improved performance, but going from 10 to 20 gave us minimal gains and begins to overfit.</p>
+
+
+          <b>Modernizing LeNet: Replace average pooling with max-pooling, replace the Sigmoid layer with ReLU. After doing so, redo the above experiment (Using different epochs 5, 10, 20), plot the training loss, validation loss, and validation accuracy for each training process. Discuss the changes compared to the results of original LeNet training.</b>
+          <div class="bubble-img-grid">
+            <figure class="bubble-shot">
+              <img src="images/epoch_5_relu.png" alt="5 epochs">
+              <figcaption>5 epochs with ReLU and MaxPool</figcaption>
+            </figure>
+        
+            <figure class="bubble-shot">
+              <img src="images/epoch_10_relu.png" alt="10 epochs">
+              <figcaption>10 epochs with ReLU and MaxPool</figcaption>
+            </figure>
+        
+            <figure class="bubble-shot">
+              <img src="images/epoch_20_relu.png" alt="20 epochs">
+              <figcaption>20 epochs with ReLU and MaxPool</figcaption>
+            </figure>
+
+          </div>
+
+          <p>After replacing sigmoid activations with ReLU and average pooling with max pooling, we can see that with 5 epochs train loss drops very quickly from 0.95 to 0.32, validation loss drops quickly as well but stabilizes at around 0.4, and validation accuracy starts high from the beggining at 0.82 and rises to 0.86. This tells us that we already have a trong performance with just 5 epochs, compared to LeNet we have faster convergence, higher accuracy early on and lower validation loss. Next, with 10 epochs the training loss goes as low as 0.27, validation loss decreases gradually to 0.31, and accuracy rises all the way to 0.89. Once again, this looks like the best balance, validation loss is steadily decreasing, accuracy increases but it is startin to flatten, and the train/val gap is small, which tell us that our model is generalizing good. Finally, with 20 epochs the training loss keeps decreasing to to around 0.20. Validation loss decreases early but flattens at 0.30, and accuracy flattens at around 0.90. We now see an improvement in training loss but almost no meaningful gain in validation accuracy after 10 epochs, which tell us that we might start seeing signs of overfitting. Comparing it to Sigmoid we notice that ReLU offers faster convergence and stronger gradients, producing higher aaccuracy since epoch 3 to 5. Moreover, MaxPooling preserves the strongest activations instead of smoothing them and weakening stronger signals, thus we have better edge and feature detection, leading to higher accuracy and lower loss. </p>
+          
+          <b>Use a different dataset, MNIST([PyTorch](https://pytorch.org/vision/main/generated/torchvision.datasets.MNIST.html), [TensorFlow](https://www.tensorflow.org/datasets/catalog/mnist)), to do training and plot training loss/accuracy and test accuracy, and discuss the results. </b>
+          <div class="bubble-img-grid">
+            <figure class="bubble-shot">
+              <img src="images/5_minst.png" alt="5 epochs">
+              <figcaption>MINST DS with 5 epochs</figcaption>
+            </figure>
+        
+            <figure class="bubble-shot">
+              <img src="images/10_minst.png" alt="10 epochs">
+              <figcaption>MINST DS with 10 epochs</figcaption>
+            </figure>
+        
+            <figure class="bubble-shot">
+              <img src="images/20_minst.png" alt="20 epochs">
+              <figcaption>MINST DS with 20 epochs</figcaption>
+            </figure>
+
+          </div>
+
+          <div class="bubble-img-grid">
+            <figure class="bubble-shot">
+              <img src="images/5_minst_relu.png" alt="5 epochs">
+              <figcaption>MINST DS with 5 epochs, ReLU and MaxPool</figcaption>
+            </figure>
+        
+            <figure class="bubble-shot">
+              <img src="images/10_minst_relu.png" alt="10 epochs">
+              <figcaption>MINST DS with 10 epochs, ReLU and MaxPool</figcaption>
+            </figure>
+        
+            <figure class="bubble-shot">
+              <img src="images/20_minst_relu.png" alt="20 epochs">
+              <figcaption>MINST DS with 20 epochs, ReLU and MaxPool</figcaption>
+            </figure>
+
+          </div>
+
+          <p>When using the MINST dataset + ReLU and MaxPooling with 5 epochs, we notice that train loss drops immediately to very low values. On the other hand, validation loss becomes small quickly, and accuracy is already nearly perfect, showing fast conergence. With 10 epochs, the loss is almost near zero and accuracy stays at almost 100%, showing that extra epochs do not improve accuracy that much. Finally, with 20 epochs the training loss goes even closer to 0, accuracy remains the same and loss stays very small. With this we can conclude that more epochs do not lead to a real benefit. MINST dataset has simpler shapes and less variations within each class, which is why it reaches a higher accuracy than FashionMIST much faster.</p>
+
+          <b>Visualizing and understanding the model</b>
+
+          <b>Visualize the activations (Sigmoid or ReLU) of the first and second layer of LeNet and modernized LeNet for different inputs (e.g., sweaters and coats) using images from the Fashion-MNIST dataset. Choose 10 images to do the visualizations. </b>
+          <div class="bubble-img-grid">
+            <figure class="bubble-shot">
+              <img src="images/og_coat.png" alt="5 epochs">
+              <figcaption>Original LeNet</figcaption>
+            </figure>
+        
+            <figure class="bubble-shot">
+              <img src="images/og_coat2.png" alt="10 epochs">
+              <figcaption>Original LeNet</figcaption>
+            </figure>
+
+            <figure class="bubble-shot">
+              <img src="images/og_coat3.png" alt="10 epochs">
+              <figcaption>Original LeNet</figcaption>
+            </figure>
+      
+
+          </div>
+
+          <div class="bubble-img-grid">
+            <figure class="bubble-shot">
+              <img src="images/mod_coat.png" alt="5 epochs">
+              <figcaption>Modernized LeNet</figcaption>
+            </figure>
+        
+            <figure class="bubble-shot">
+              <img src="images/mod_coat2.png" alt="10 epochs">
+              <figcaption>Modernized LeNet</figcaption>
+            </figure>
+
+            <figure class="bubble-shot">
+              <img src="images/mod_coat3.png" alt="10 epochs">
+              <figcaption>Modernized LeNet</figcaption>
+            </figure>
+      
+
+          </div>
+
+          <p>For the Original LeNet version conv1 we notice that the maps look smoother and more washed out since sigmoid squashes values between 0 and 1, making actiavtions less sharp and reduces contrast, so edges look softer. On the modernized one, we see higher contrast and clearer edges as well as more black background beacuse ReLU sets negative values to 0, increasing contrast and making edges pop more. Furthermore, maxPool preseves the strongest activations and keeps edges sharp instead of avaraging them. On the conv2 we see blurier images with some structure but we connot distinguish shapes a lot. This happens because avgPool smooths features and sigmoid compresses activations, so higher level features become less sharp. On the modernized one we see more distinct patches and clearer vertical structures since ReLU preserves strong signals.</p>
+
+          <b>What happens to the activations when you feed significantly different images into the network (e.g., cats, cars, or even random noise)? Choose 10 images to do the visualizations. </b>
+          <div class="bubble-img-grid">
+            <figure class="bubble-shot">
+              <img src="images/og_car.png" alt="5 epochs">
+              <figcaption>Original LeNet Cats and Cars</figcaption>
+            </figure>
+        
+            <figure class="bubble-shot">
+              <img src="images/og_car2.png" alt="10 epochs">
+              <figcaption>Original LeNet Cats and Cars</figcaption>
+            </figure>
+
+            <figure class="bubble-shot">
+              <img src="images/og_car3.png" alt="10 epochs">
+              <figcaption>Original LeNet Cats and Cars</figcaption>
+            </figure>
+      
+
+          </div>
+
+          <div class="bubble-img-grid">
+            <figure class="bubble-shot">
+              <img src="images/mod_car.png" alt="5 epochs">
+              <figcaption>Modernized LeNet Cats and Cars</figcaption>
+            </figure>
+        
+            <figure class="bubble-shot">
+              <img src="images/mod_car2.png" alt="10 epochs">
+              <figcaption>Modernized LeNet Cats and Cars</figcaption>
+            </figure>
+
+            <figure class="bubble-shot">
+              <img src="images/mod_car3.png" alt="10 epochs">
+              <figcaption>Modernized LeNet Cats and Cars</figcaption>
+            </figure>
+      
+
+          </div>
+
+          <p>When feeding out of distribution images into our model that was trained on FASHION-MNIST the conv1 still produces strong activations because that layer detects generic low level features like edges that appear in any type of images. However, on conv2 activations become less structured because deep layers focus on more task specific combinations that the model learned from the clothing data. In the modernized LeNet, activations are sharper and more sparse since it preserves that strongest responses.</p>
+        </section>
+
+        <section class="projects">
+          <div class="projects-header-wrap">
+              <h2 class="projects-header">Part 2: Batch Normalization</h2>
+          </div>
+        </section>
+
+    <section class="bubble">
+      <b>Compare the learning rates (e.g., 0.01, 0.1, 1.0, try other learning rate values by yourself) for LeNet with and without batch normalization by plotting the training and validation losses and validation accuracy.  </b>
+
+      <b>Find a  learning rate that makes the optimization fail in both cases (with and without batch normalization)?</b>
+
+        <div class="bubble-img-grid">
+            <figure class="bubble-shot">
+              <img src="images/BN_lr_0.01.png" alt="5 epochs">
+              <figcaption>With Batch Norm, 0.01 Learning Rate</figcaption>
+            </figure>
+        
+            <figure class="bubble-shot">
+              <img src="images/BN_lr_0.1.png" alt="10 epochs">
+              <figcaption>With Batch Norm, 0.1 Learning Rate</figcaption>
+            </figure>
+        
+            <figure class="bubble-shot">
+              <img src="images/BN_lr_1.png" alt="20 epochs">
+              <figcaption>With Batch Norm, 1.0 Learning Rate</figcaption>
+            </figure>
+
+          </div>
+
+          <div class="bubble-img-grid">
+            <figure class="bubble-shot">
+              <img src="images/BN_lr_5.png" alt="5 epochs">
+              <figcaption>With Batch Norm, 5.0 Learning Rate</figcaption>
+            </figure>
+        
+            <figure class="bubble-shot">
+              <img src="images/BN_lr_30.png" alt="10 epochs">
+              <figcaption>With Batch Norm, 30.0 Learning Rate</figcaption>
+            </figure>
+        
+            <figure class="bubble-shot">
+              <img src="images/BN_lr_50.png" alt="20 epochs">
+              <figcaption>With Batch Norm, 50.0 Learning Rate</figcaption>
+            </figure>
+
+          </div>
+
+          <div class="bubble-img-grid">
+            <figure class="bubble-shot">
+              <img src="images/lr_0.01.png" alt="5 epochs">
+              <figcaption>Without Batch Norm, 0.01 Learning Rate</figcaption>
+            </figure>
+        
+            <figure class="bubble-shot">
+              <img src="images/lr_0.1.png" alt="10 epochs">
+              <figcaption>Without Batch Norm, 0.1 Learning Rate</figcaption>
+            </figure>
+        
+            <figure class="bubble-shot">
+              <img src="images/lr_1.png" alt="20 epochs">
+              <figcaption>Without Batch Norm, 1.0 Learning Rate</figcaption>
+            </figure>
+
+          </div>
+
+          <div class="bubble-img-grid">
+            <figure class="bubble-shot">
+              <img src="images/lr_2.png" alt="5 epochs">
+              <figcaption>Without Batch Norm, 2.0 Learning Rate</figcaption>
+            </figure>
+        
+            <figure class="bubble-shot">
+              <img src="images/lr_5.png" alt="10 epochs">
+              <figcaption>Without Batch Norm, 5.0 Learning Rate</figcaption>
+            </figure>
+        
+            <figure class="bubble-shot">
+              <img src="images/lr_30.png" alt="20 epochs">
+              <figcaption>Without Batch Norm, 30.0 Learning Rate</figcaption>
+            </figure>
+
+          </div>
+
+          <p>From these results we can see that batch normalization increases training stability significantly when we are testing different values of learning rate. Without BN, our model fails to train at lr 1.0 and above, where loss reamins high and accuracy low, or basically random. At higher lr like 30, we can see that the loss explodes. On the other hand, the model with BN reamins very stable and converges even at lr as high as under 30, when it starts becoming unstable. Only at very high lr such as 50 we can see that the optimization fails. This shows that BN let us use much higher lr by stabilizing intermediate activations.</p>
+
+
+          <b>Ablation study: Should we use batch normalization in every layer? For now, there are four batch normalizations are used. Add one batch normalization at a time, plot the training and validation losses and validation accuracy, and discuss your findings. </b>
+          <div class="bubble-img-grid">
+            <figure class="bubble-shot">
+              <img src="images/0BN.png" alt="5 epochs">
+              <figcaption>0 BN</figcaption>
+            </figure>
+        
+            <figure class="bubble-shot">
+              <img src="images/1BN.png" alt="10 epochs">
+              <figcaption>1 BN</figcaption>
+            </figure>
+        
+            <figure class="bubble-shot">
+              <img src="images/2BN.png" alt="20 epochs">
+              <figcaption>2 BN</figcaption>
+            </figure>
+
+          </div>
+
+          <div class="bubble-img-grid2">
+            <figure class="bubble-shot">
+              <img src="images/3BN.png" alt="5 epochs">
+              <figcaption>3 BN</figcaption>
+            </figure>
+        
+            <figure class="bubble-shot">
+              <img src="images/4BN.png" alt="10 epochs">
+              <figcaption>4 BN</figcaption>
+            </figure>
+        
+          </div>
+
+          <p>For this ablation study, I tested 0 BN, 1, 2, 3, and 4 respectively. Without BN, the gradients vanish or explode early, affecting the optimization and leading to high losses. When we added BN to the first conv layer, we saw some of the same behavior. However, when we add BN to the second conv layer, we start seeing how the training and validation loss decreases, and accuracy increases. This tells us that early layer normalization stabilizes our model and affects behavior downstream. Furthermore, when we add BN to the fully connected layers we notice a smooth decreasing training loss and accuracy rises steadily. From this we can conclude that full batch normalization leads to a stable and fast convergence. Moreover, we can see that BN in early layers is as crucial as it is in the end, and that adding BN progressively increases stability and using BN in all layers yields the best results.           </p>
+          
+          <b>Implement a simpler version of batch normalization. Only removes the mean, or alternatively one that only removes the variance. How does the training behaves now? Plot the training and validation losses and validation accuracy, and discuss the results.  </b>
+          <div class="bubble-img-grid2">
+            <figure class="bubble-shot">
+              <img src="images/mean_only.png" alt="5 epochs">
+              <figcaption>Mean only</figcaption>
+            </figure>
+        
+            <figure class="bubble-shot">
+              <img src="images/10_minst.png" alt="10 epochs">
+              <figcaption>Var Only</figcaption>
+            </figure>
+
+          </div>
+
+          <p>For the mean only normalization the loss stays high for the first 3 epochs and then starts to drop. From this plot we can see that mean only helps a little by recentering activations, but since it does not control scale, the network still has unstable and slow learning early on and accuracy flattens at the end. On the other hand, the variance only model starts showing a drop in loss very early on and accuracy ends up higher, demonstrating good generalization. This shows that controlling scale makes optimization much easier, giving faster convergence and higher final accuracy. The reason why variance is more important is because it keeps the activation magnitudes stable across layers and over time, and prevents layers from producing values that are way larger than others.</p>
+
+          <b>What if you fix the parameters beta and gamma. Plot the training and validation losses and validation accuracy, and discus the results.</b>
+
+
+
+          <div class="bubble-img-grid1">
+            <figure class="bubble-shot">
+              <img src="images/fixed.png" alt="5 epochs">
+              <figcaption>Fixed Parameters Beta and Gamma</figcaption>
+            </figure>
+      
+
+          </div>
+
+          <p>We implemented BatchNorm with fixed γ = 1 and β = 0, meaning that the network cannot undo normalization anymore. From the graph we notice that training loss looks stable, val loss has some slight oscillations but is still decreasing overall and accuracy looks stable as well. This suggest that the main stabilization effect of BN comes from centering and scaling, and not from γ and β. However, performance is slightly worse than full BN showing that beta and gamma do help the network have some more flexibility. </p>
+
+        </section>
+
+      </div>
+    
+
+
+    <footer class="footer">
+      <p>© <span id="year"></span> Paulina Eguibar</p>
+    </footer>
+  </main>
+
+  <script>
+    const nav = document.querySelector(".nav");
+    const heroName = document.getElementById("heroName");
+    const headerTitle = document.getElementById("headerTitle");
+    const dock = document.getElementById("nameDock");
+    const year = document.getElementById("year");
+    year.textContent = new Date().getFullYear();
+  
+    // Put the same text in the header title
+    headerTitle.textContent = heroName.textContent;
+
+    function updateNavShadow() {
+      nav.classList.toggle("scrolled", window.scrollY > 8);
+    }
+
+    updateNavShadow();
+    window.addEventListener("scroll", updateNavShadow, { passive: true });
+  
+    function clamp01(x){ return Math.max(0, Math.min(1, x)); }
+    function lerp(a,b,t){ return a + (b-a)*t; }
+  
+    // We measure start/end positions WITHOUT transform so it doesn't drift.
+    function measureCenters() {
+      const prev = heroName.style.transform;
+      heroName.style.transform = "none";
+      const from = heroName.getBoundingClientRect();
+      heroName.style.transform = prev;
+  
+      const to = dock.getBoundingClientRect();
+  
+      return {
+        fromX: from.left + from.width/2,
+        fromY: from.top + from.height/2,
+        toX: to.left + to.width/2,
+        toY: to.top + to.height/2
+      };
+    }
+  
+    let centers = measureCenters();
+  
+    function animate() {
+      const end = 280;                // scroll distance to fully dock
+      const t = clamp01(window.scrollY / end);
+  
+      const dx = centers.toX - centers.fromX;
+      const dy = centers.toY - centers.fromY;
+  
+      // Move and shrink hero title toward dock
+      const scale = lerp(1, 0.30, t);
+      heroName.style.transform = `translate(${dx*t}px, ${dy*t}px) scale(${scale})`;
+  
+      // Cross-fade into the header title (so it never "disappears")
+      const heroOpacity = lerp(1, 0, Math.max(0, (t - 0.55) / 0.45));  // fades out late
+      const headOpacity = lerp(0, 1, Math.max(0, (t - 0.55) / 0.45));  // fades in late
+      heroName.style.opacity = String(heroOpacity);
+      headerTitle.style.opacity = String(headOpacity);
+  
+      // Prevent hero title from blocking clicks once it's basically docked
+      heroName.style.pointerEvents = (t > 0.92) ? "none" : "auto";
+    }
+  
+    animate();
+    window.addEventListener("scroll", animate, { passive: true });
+    window.addEventListener("resize", () => {
+      centers = measureCenters();
+      animate();
+    });
+  </script>
+  
+
+
+</body>
+</html>
+
+
