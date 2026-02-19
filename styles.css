@@ -941,3 +941,44 @@ body{
   padding: 50px 0 18px; 
 }
 
+/* ========================
+   Project Image Slider
+   ======================== */
+
+   .project-slider {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    border-radius: 18px;
+    position: relative;
+    background: #eae4df;
+  }
+  
+  .slides {
+    display: flex;
+    width: 300%; /* number_of_images * 100% */
+    height: 100%;
+    animation: slideShow 12s infinite ease-in-out;
+  }
+  
+  .slides img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    flex: 0 0 100%;
+  }
+  
+  /* Animation */
+  @keyframes slideShow {
+    0%   { transform: translateX(0%); }
+    30%  { transform: translateX(0%); }
+  
+    35%  { transform: translateX(-100%); }
+    65%  { transform: translateX(-100%); }
+  
+    70%  { transform: translateX(-200%); }
+    95%  { transform: translateX(-200%); }
+  
+    100% { transform: translateX(0%); }
+  }
+  
