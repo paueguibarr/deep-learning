@@ -942,43 +942,113 @@ body{
 }
 
 /* ========================
-   Project Image Slider
+   Luxury Fade Slider (Apple-ish)
    ======================== */
 
-   .project-slider {
+   .project-slider{
     width: 100%;
     height: 100%;
-    overflow: hidden;
-    border-radius: 18px;
+    min-height: 520px;              /* controls the left quadrant height */
+    border-radius: 22px;
+    border: 1px solid rgba(74,45,35,0.10);
+    background: rgba(244,239,234,0.85);
     position: relative;
-    background: #eae4df;
+    overflow: hidden;
+  
+    /* subtle depth */
+    box-shadow: 0 18px 45px rgba(74,45,35,0.06);
   }
   
-  .slides {
+  /* give the image breathing room so it’s not huge */
+  .project-slider .frames{
+    position: absolute;
+    inset: 0;
+    padding: clamp(26px, 3vw, 56px); /* <-- makes image smaller inside the block */
+    display: grid;
+    place-items: center;
+  }
+  
+  .project-slider .frame{
+    position: absolute;
+    inset: 0;
+    margin: 0;
+    opacity: 0;
+    transform: scale(0.99);
+    transition: opacity 700ms ease, transform 900ms ease;
+    display: grid;
+    place-items: center;
+  }
+  
+  /* active slide */
+  .project-slider .frame.is-active{
+    opacity: 1;
+    transform: scale(1);
+  }
+  
+  /* the image itself */
+  .project-slider img{
+    width: min(480px, 70%);
+    height: auto;
+    max-height: 78%;
+    object-fit: contain;
+    display: block;
+  
+    border-radius: 16px;
+    background: rgba(255,255,255,0.65);
+    border: 1px solid rgba(74,45,35,0.10);
+  
+    /* tiny “print” shadow */
+    box-shadow: 0 16px 36px rgba(74,45,35,0.08);
+  }
+  
+  /* optional gentle Ken Burns feel */
+  .project-slider .frame.is-active img{
+    animation: subtleZoom 5.5s ease-in-out infinite alternate;
+  }
+  @keyframes subtleZoom{
+    from { transform: scale(1); }
+    to   { transform: scale(1.02); }
+  }
+  
+  /* iPhone-style dots */
+  .project-slider .dots{
+    position: absolute;
+    bottom: 16px;
+    left: 50%;
+    transform: translateX(-50%);
     display: flex;
-    width: 300%; /* number_of_images * 100% */
-    height: 100%;
-    animation: slideShow 12s infinite ease-in-out;
+    gap: 10px;
+    padding: 10px 14px;
+    border-radius: 999px;
+  
+    background: rgba(255,255,255,0.55);
+    border: 1px solid rgba(74,45,35,0.10);
+    backdrop-filter: blur(6px);
   }
   
-  .slides img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    flex: 0 0 100%;
+  .project-slider .dot{
+    width: 8px;
+    height: 8px;
+    border-radius: 999px;
+    border: none;
+    background: rgba(74,45,35,0.22);
+    cursor: pointer;
+    padding: 0;
   }
   
-  /* Animation */
-  @keyframes slideShow {
-    0%   { transform: translateX(0%); }
-    30%  { transform: translateX(0%); }
-  
-    35%  { transform: translateX(-100%); }
-    65%  { transform: translateX(-100%); }
-  
-    70%  { transform: translateX(-200%); }
-    95%  { transform: translateX(-200%); }
-  
-    100% { transform: translateX(0%); }
+  .project-slider .dot.is-active{
+    width: 22px; /* pill like iOS */
+    background: rgba(74,45,35,0.70);
+    transition: width 260ms ease, background 260ms ease;
   }
   
+  /* pause animation on hover (feels premium) */
+  .project-slider:hover .frame.is-active img{
+    animation-play-state: paused;
+  }
+  
+  /* responsive */
+  @media (max-width: 980px){
+    .project-slider{ min-height: 420px; }
+    .project-slider img{ width: min(520px, 86%); max-height: 82%; }
+  }
