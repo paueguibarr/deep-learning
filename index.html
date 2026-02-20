@@ -146,7 +146,7 @@
     </footer>
   </main>
 
-  <script>
+    <script>
     const nav = document.querySelector(".nav");
     const heroName = document.getElementById("heroName");
     const headerTitle = document.getElementById("headerTitle");
@@ -213,6 +213,58 @@
       centers = measureCenters();
       animate();
     });
+
+    document.querySelectorAll('.project-slider').forEach((slider) => {
+    const frames = Array.from(slider.querySelectorAll('.frame'));
+    const dots = Array.from(slider.querySelectorAll('.dot'));
+    const interval = Number(slider.dataset.interval || 3500);
+    const autoplay = slider.dataset.autoplay === "true";
+
+    let i = 0;
+    let timer = null;
+
+    function show(index){
+      frames[i].classList.remove('is-active');
+      dots[i].classList.remove('is-active');
+
+      i = index;
+
+      frames[i].classList.add('is-active');
+      dots[i].classList.add('is-active');
+    }
+
+    function next(){
+      show((i + 1) % frames.length);
+    }
+
+    // dot click
+    dots.forEach((dot, idx) => {
+      dot.addEventListener('click', () => {
+        show(idx);
+        if (autoplay) restart();
+      });
+    });
+
+    function start(){
+      if (!autoplay) return;
+      timer = setInterval(next, interval);
+    }
+
+    function stop(){
+      if (timer) clearInterval(timer);
+      timer = null;
+    }
+
+    function restart(){
+      stop(); start();
+    }
+
+    // pause on hover (luxury feel)
+    slider.addEventListener('mouseenter', stop);
+    slider.addEventListener('mouseleave', start);
+
+    start();
+  });
   </script>
   
 
