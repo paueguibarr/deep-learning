@@ -40,9 +40,9 @@
       <div class="bg-grid" aria-hidden="true"></div>
 
       <!-- The big name that animates -->
-      <h1 id="heroName" class="hero-name">Evolution of Convolutional Neural Networks </h1>
-      <p class="hero-sub">Implementing and modernizing LeNet, Batch Normalization, and ResNet</p>
-
+     <h1 id="heroName" class="hero-name">Modern Recurrent Neural Networks </h1>
+      <p class="hero-sub">Basic RNNs, GRU, and Seq2Seq</p>
+      
       <div class="scroll-hint" aria-hidden="true">
         <div class="ring">Read More</div>
         <div class="chev">⌄</div>
@@ -58,59 +58,78 @@
     </section>
     
     <section class="bubble">
-    <ul class="bubble-list">
-        <li>This project aims to guide students through the development of Convolutional Neural Networks (CNNs) by implementing and modernizing network architectures.</li>
-        <li>Students will begin by implementing LeNet (1998), one of the earliest CNN models, and gradually introduce key improvements that have shaped modern deep learning such as activation function, pooling, and batch normalization. </li>
-        <li>By following this structured progression, students will gain hands-on experience with the fundamental advancements in CNNs leading up to the AlexNet breakthrough (2012).</li>
+     <ul class="bubble-list">
+        <li>This project aims to provide students with hands-on experience in developing Recurrent Neural Networks (RNNs) by implementing and experimenting with various RNN architectures. By following a structured progression of tasks, students will explore key advancements in RNNs. </li>
     </ul>
     </section>
 
     <section class="projects">
     <div class="projects-header-wrap">
-        <h2 class="projects-header">Part 1: Implementing and modernizing LeNet</h2>
+        <h2 class="projects-header">Part 1: Basic RNNs</h2>
     </div>
   </section>
   
     <section class="bubble">
-      <b>Use different epochs (5, 10, 20) to train your LeNet, plot the training loss, validation loss, and validation accuracy of each training process, and discuss how changing training epochs affects the performance. </b>
+      <b>Implement basic RNN and train your model on The Time Machine dataset. </b>
+      <b><br>Task 1: Optimize the performance of a basic RNN by tuning key hyperparameters.</b>
 
+      <ul class="bubble-list">
+        <li>Adjust the following hyperparameters: number of epochs, number of hidden units, number of time steps in a minibatch, learning rate. </li>
+        <li>Goal: Achieve the lowest possible perplexity (evaluation metric) on the validation set using the implemented RNN architecture.</li>
+        <li>Sticking with this simple RNN architecture, what's the best accuracy (low perplexity) you can get? Discuss your results and provide the training and validation perplexity plots of your top-performing configurations (≥3). </li>
+      </ul>
 
         <div class="bubble-img-grid">
             <figure class="bubble-shot">
-              <img src="images/epoch_5.png" alt="5 epochs">
-              <figcaption>5 epochs</figcaption>
+              <img src="images/top3_1.png" alt="Top 3 1 ">
+              <figcaption>Best configuration</figcaption>
             </figure>
         
             <figure class="bubble-shot">
-              <img src="images/epoch_10.png" alt="10 epochs">
-              <figcaption>10 epochs</figcaption>
+              <img src="images/top3_2.png" alt="Top 3 2">
+              <figcaption>Second Best configuration</figcaption>
             </figure>
         
             <figure class="bubble-shot">
-              <img src="images/epoch_20.png" alt="20 epochs">
-              <figcaption>20 epochs</figcaption>
+              <img src="images/top3_3.png" alt="Top 3 3">
+              <figcaption>Thrid Best configuration</figcaption>
             </figure>
 
           </div>
 
-          <p>From the plots we can notice that with 5 epochs, the training loss decreases, but not significantly. Aditionally, the validation loss decreases only a little, and the accuracy increases slowly, capping at around 60%. From these results we can conclude that our model is undertrained. It has not seen the data enough times to learn strong feature representations, furthermore, the loss is still high and the accuracy moderate. Our model is underfitted since it has not converged yet and has not caputred all the patterns in the data. If we switch to the plot with 10 epochs, we see that the training loss drops much more significantly. The validation loss also decreases consistently, and the accuracy incerases all the way to around 70%. This tells us that this is a much better training duration. Our model has learned stronger feature representations and is generalizing well, which we can see from how the training and validation losses are similar). An important aspect to note is that our model has not started to overfit. FInally, in the plot with 20 epochs, we notice that the training loss keeps decreasing. On the other hand, the validation loss keeps decreasing but starts to flatten, and accuracy increases only slightly (to around 75%-78%). We can notice a small gap between training and validation loss. What this is telling us is that we are starting to see signs of overfitting. The model is starting to memorize the data more than learning new features, however, the overfitting is still very small. In sum, going from 5 to 10 epochs significantly improved performance, but going from 10 to 20 gave us minimal gains and begins to overfit.</p>
-
-
-          <b>Modernizing LeNet: Replace average pooling with max-pooling, replace the Sigmoid layer with ReLU. After doing so, redo the above experiment (Using different epochs 5, 10, 20), plot the training loss, validation loss, and validation accuracy for each training process. Discuss the changes compared to the results of original LeNet training.</b>
-          <div class="bubble-img-grid">
+          <div class="bubble-img-grid1">
             <figure class="bubble-shot">
-              <img src="images/epoch_5_relu.png" alt="5 epochs">
-              <figcaption>5 epochs with ReLU and MaxPool</figcaption>
+              <img src="images/top3_config.png" alt="configurations">
+              <figcaption>Configurations for top 3 performers</figcaption>
+            </figure>
+      
+
+          </div>
+
+          <p>For task 1 I decided to test 36 different configurations. For num_hiddens I varied around 128 and 256 to have a balanced model capacity, and a more expressive, but slower and with risk of overfit model capacity. For num_steps I played with 32 and 64, this to shorter contexts as well as larger ones for better long term modeling. Then for learing rate I used 1.0, an agressive approach, 0.5, which was something more typical, and 0.3, a moderate, more conservative learning rate. Finally I tried using 50, 100 and 200 epochs to analyze whether thare was no convergance or overfiting involved. After analyizing all these models, I found the top 3 performers which you can see on the plots above. From the configuration figure you can see that 128 was the sweet spot for num_hiddens, that num_steps doesnt relaly make a lot of difference, that the best learning rate is probably 0.3, ensuring a short but stable convergance, and that 50 epochs is definatly not enough, an rather 200 epochs is closer to the best possible results. The lowest perplexity that was achieved with these experiments was 6.304, which is a really good result.  </p>
+
+
+          <b>Task 2: Investigate the impact of gradient clipping and different activation functions on model training stability and performance.</b>
+
+          <ul class="bubble-list">
+            <li>Try to train the RNN model without clipping the gradient, plot the training and validation perplexity and discuss the results. </li>
+            <li>Replace the activation function with ReLU and plot the training and validation perplexity. Discuss if we still need gradient clipping, or should we use both ReLU and gradient clipping?</li>
+          </ul>
+
+          <div class="bubble-img-grid-tall">
+            <figure class="bubble-shot">
+              <img src="images/task2_1.png" alt="Task2 1">
+              <figcaption>Best Congiguration from Task 1: Top: Tahn and Clip, Second: Tahn No Clip Thrid: Relu and Clip Bottom: Relu No Clip</figcaption>
             </figure>
         
             <figure class="bubble-shot">
-              <img src="images/epoch_10_relu.png" alt="10 epochs">
-              <figcaption>10 epochs with ReLU and MaxPool</figcaption>
+              <img src="images/task2_2.png" alt="Task2 2">
+              <figcaption>Second Best Congiguration from Task 1: Top: Tahn and Clip, Second: Tahn No Clip Thrid: Relu and Clip Bottom: Relu No Clip</figcaption>
             </figure>
         
             <figure class="bubble-shot">
-              <img src="images/epoch_20_relu.png" alt="20 epochs">
-              <figcaption>20 epochs with ReLU and MaxPool</figcaption>
+              <img src="images/task2_3.png" alt="Task2 3">
+              <figcaption>Third Best Congiguration from Task 1: Top: Tahn and Clip, Second: Tahn No Clip Thrid: Relu and Clip Bottom: Relu No Clip</figcaption>
             </figure>
 
           </div>
