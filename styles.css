@@ -864,6 +864,52 @@ body{
   gap: 12px;
 }
 
+.bubble-img-grid-tall{
+  margin-top: 14px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+
+  grid-auto-rows: 1000px; /* total card height */
+}
+
+/* Make each tile a vertical layout: image on top, caption below */
+.bubble-img-grid-tall .bubble-shot{
+  margin: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+  border-radius: 18px;
+  overflow: hidden;
+
+  background: rgba(255,255,255,0.55);
+  border: 1px solid rgba(74,45,35,0.10);
+}
+
+/* Image takes remaining space, caption keeps its own height */
+.bubble-img-grid-tall .bubble-shot img{
+  width: 100%;
+  flex: 1;                 /* <-- KEY: fills leftover height */
+  min-height: 0;           /* prevents overflow in flex containers */
+  object-fit: contain;     /* no cropping for plots */
+  background: #fff;
+  display: block;
+}
+
+/* Caption area */
+.bubble-img-grid-tall .bubble-shot figcaption{
+  padding: 12px 14px;
+  font-size: 14px;
+  line-height: 1.45;
+  color: var(--ink2);
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+
+  border-top: 1px solid rgba(74,45,35,0.10);
+  background: rgba(255,255,255,0.65);
+}
+
+
 .bubble-img-grid2{
   margin-top: 14px;
   display: grid;
