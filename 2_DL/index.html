@@ -283,6 +283,134 @@
         <b>Implement Seq2Seq and train your model on the English–French dataset, a machine translation dataset. </b>
         <b><br>Task 1: Perform hyperparameters tuning to improve the translation results. Discuss your results (e.g., BLEU) and provide the training and validation perplexity plots of your top-performing configurations (≥3). </b>
 
+        <div class="bubble-img-grid-tall2">
+          <figure class="bubble-shot">
+            <img src="images/seq2seq_m1.png" alt="5 epochs">
+            <figcaption>Best Model Results </figcaption>
+          </figure>
+      
+          <figure class="bubble-shot">
+            <img src="images/seq2seq_m2.png" alt="10 epochs">
+            <figcaption>Second Best Model Results</figcaption>
+          </figure>
+      
+          <figure class="bubble-shot">
+            <img src="images/seq2seq_m3.png" alt="20 epochs">
+            <figcaption>Third Best Model Results</figcaption>
+          </figure>
+
+        </div>
+
+        <div class="bubble-img-grid">
+          <figure class="bubble-shot">
+            <img src="images/seq2seq_plot1.png" alt="5 epochs">
+            <figcaption>Best Model Plot </figcaption>
+          </figure>
+      
+          <figure class="bubble-shot">
+            <img src="images/seq2seq_plot2.png" alt="10 epochs">
+            <figcaption>Second Best Model Plot</figcaption>
+          </figure>
+      
+          <figure class="bubble-shot">
+            <img src="images/seq2seq_plot3.png" alt="20 epochs">
+            <figcaption>Third Best Model Plot</figcaption>
+          </figure>
+
+        </div>
+
+        <div class="bubble-img-grid-tall2">
+          <figure class="bubble-shot">
+            <img src="images/seq2seq_m4.png" alt="5 epochs">
+            <figcaption>Fourth Best Model Results </figcaption>
+          </figure>
+      
+          <figure class="bubble-shot">
+            <img src="images/seq2seq_m5.png" alt="10 epochs">
+            <figcaption>Fifth Best Model Results</figcaption>
+          </figure>
+    
+
+        </div>
+
+        <div class="bubble-img-grid2">
+          <figure class="bubble-shot">
+            <img src="images/seq2seq_plot4.png" alt="5 epochs">
+            <figcaption>Fourth Best Model Plot </figcaption>
+          </figure>
+      
+          <figure class="bubble-shot">
+            <img src="images/seq2seq_plot5.png" alt="10 epochs">
+            <figcaption>Fifth Best Model Plot</figcaption>
+          </figure>
+    
+
+        </div>
+
+        <p>For this task, we tested 30 different Seq2Seq configurations by varying the embedding size, number of hidden units, number of layers, dropout, learning rate, and number of epochs. Overall, the best-performing models achieved an average BLEU score of around 0.18, while maintaining very fast training times (around 0.3–0.5 seconds per epoch). The models with larger embedding and hidden sizes of 256 and two layers generally performed slightly better than smaller configurations, suggesting that a larger model capacity helps capture more information from the dataset. Increasing the number of epochs improved the training loss, but the validation loss would increased after some point, giving signs of overfitting. This can be observed in the plots where the training loss continues decreasing while the validation loss starts rising. Additionally, many translations contain the <unk> token, meaning the model encountered words outside its vocabulary, which negatively affected the BLEU score. Despite this limitation, the models were still able to correctly translate several short and common phrases such as “go.” and “I lost.” In general, the experiments show that while larger models and longer training can improve learning, vocabulary limitations and overfitting still impact the final translation quality.</p>
+
+        <b>Task 2: Understand the role of masking in loss calculation. Run the Seq2Seq training without applying masks to the loss function. Compare the results (training/validation loss curves and BLEU scores) with the masked version. Discuss the results in terms of: </b>
+
+        <ul class="bubble-list">
+          <li>How does the final BLEU score differ?</li>
+          <li>Do you observe slower convergence or higher perplexity?</li>
+          <li>Why does the model struggle when masks are not applied?</li>
+        </ul>
+        <b>Clarification: This task is to help us understand the masking process in the loss computation. Please do experiment with and without the masking, and train your model, and discuss results and your observations.</b>
+
+
+        <div class="bubble-img-grid2">
+          <figure class="bubble-shot">
+            <img src="images/marsk_plot.png" alt="5 epochs">
+            <figcaption>Seq2Seq Masked Plot </figcaption>
+          </figure>
+      
+          <figure class="bubble-shot">
+            <img src="images/unmask_plot.png" alt="10 epochs">
+            <figcaption>Seq2Seq Unmasked Plot</figcaption>
+          </figure>
+    
+
+        </div>
+
+        <div class="bubble-img-grid-tall2">
+          <figure class="bubble-shot">
+            <img src="images/masked_pred1.png" alt="5 epochs">
+            <figcaption>Seq2Seq Masked Predictions  </figcaption>
+          </figure>
+      
+          <figure class="bubble-shot">
+            <img src="images/masked_pred2.png" alt="10 epochs">
+            <figcaption>Seq2Seq Masked Predictions </figcaption>
+          </figure>
+    
+
+        </div>
+
+        <div class="bubble-img-grid-tall2">
+          <figure class="bubble-shot">
+            <img src="images/masked_pred1.png" alt="5 epochs">
+            <figcaption>Seq2Seq Unmasked Predictions  </figcaption>
+          </figure>
+      
+          <figure class="bubble-shot">
+            <img src="images/masked_pred2.png" alt="10 epochs">
+            <figcaption>Seq2Seq Unmasked Predictions </figcaption>
+          </figure>
+    
+
+        </div>
+
+      <p>In this experiment we compared training the Seq2Seq model with and without masking applied to the loss function. Masking ignores <pad> tokens when computing the loss, on the other hand, the unmasked version includes them in the loss calculation.
+
+        First of all, the BLEU score did not improve when masking was removed, and the translation quality remained poor overall. However, the masked model was still able to correctly translate several short sentences such as “go.”, “I lost.”, and “I’m home.”, while the unmasked model produced many outputs containing <unk> tokens or incorrect words. This shows that masking helps the model focus more on meaningful tokens in the sequence instead of learning from padded positions.
+        
+        If we look at the training and validation loss curves, both models show decreasing training loss over time, but the unmasked model tends to converge more slowly and produces worse validation behavior. Since the loss is computed over all tokens including padding, the model wastes capacity trying to predict <pad> tokens instead of learning the actual translation task. This results in poor generalization and less stable validation loss.
+        
+        Finally, the model struggles without masking because sequence datasets have many padding tokens used to make sentences the same length within a batch. If these tokens are included in the loss, they dominate the optimization process. Instead of learning meaningful word mappings between English and French, is like the model learns to predict padding positions. Masking removes these tokens from the loss calculation so that the model only learns from the real words in the sentence, which leads to better training behavior and more meaningful translations.
+        
+        In sum, this experiment shows that masking is an important step in sequence modeling because it prevents padding tokens from influencing the learning process.</p>
+
       </section>
 
       </div>
