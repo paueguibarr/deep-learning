@@ -1,0 +1,522 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Project 3</title>
+  <link rel="stylesheet" href="../styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" sizes="32x32" href="../icon3.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../icon3.png">
+
+</head>
+
+
+<body>
+  <!-- Sticky nav -->
+  <header class="nav">
+    <div class="nav-inner">
+      <a class="nav-link" href="../index.html">Home</a>
+      <a class="nav-link" href="https://paueguibarr.github.io/index.html">CV Site</a>
+
+      <!-- This is where the name will "land" -->
+      <div class="nav-name-slot" aria-hidden="true">
+        <div id="nameDock">
+          <span id="headerTitle" class="header-title"></span>
+        </div>
+      </div>
+
+      <div class="nav-right">
+        <a class="nav-link" href="#projects">Projects</a>
+        <a class="nav-link nav-btn" href="https://-hawk-.notion.site/Spring-2026-Deep-Learning-Class-Schedule-2efdfc3276088041be51f1dc2dc14285" target="_blank" rel="noreferrer">Class Site</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <main id="home">
+    <section class="hero">
+      <!-- Background grid -->
+      <div class="bg-grid" aria-hidden="true"></div>
+
+      <!-- The big name that animates -->
+      <h1 id="heroName" class="hero-name">Attention and Transformers </h1>
+      <p class="hero-sub">Basic Attention Mechanism, Multi-head Attention, Transformer Architecture</p>
+
+      <div class="scroll-hint" aria-hidden="true">
+        <div class="ring">Read More</div>
+        <div class="chev">⌄</div>
+      </div>
+    </section>
+
+    <div class="page">
+
+    <section id="projects" class="projects">
+      <div class="projects-header-wrap">
+        <h2 class="projects-header">Objectives</h2>
+      </div>
+    </section>
+    
+    <section class="bubble">
+    <ul class="bubble-list">
+        <li>In this project, you will explore core components of modern attention-based architectures. You will implement and analyze: </li>
+        <ul>
+            <li>A basic attention mechanism</li>
+            <li>Multi-head attention</li>
+            <li>The Transformer architecture</li>
+        </ul>
+        <li>Your goals are to understand how attention works, how it differs from RNNs, and how model performance is influenced by architectural and hyperparameter choices.</li>
+    </ul>
+    </section>
+
+    <section class="projects">
+    <div class="projects-header-wrap">
+        <h2 class="projects-header">Part 1: Basic Attention Mechanism</h2>
+    </div>
+  </section>
+  
+    <section class="bubble">
+      <b>Implement the attention mechanism on top of the encoder-decoder model. Train on the English–French dataset from Project 2. </b>
+      <b><br>Task 1: Hyperparameter Tuning. Use the same test data provided in Part 3 of Project 2 to compute the BLEU score. </b>
+
+      <ul class="bubble-list">
+        <li>Tune the attention model to improve translation results (e.g., BLEU score). </li>
+        <li>Provide training and validation loss plots of your top-performing configurations (≥3).</li>
+        <li>Discuss your findings and comment on the effects of different hyperparameter settings.</li>
+      </ul>
+
+      <div class="bubble-img-grid-tall2">
+        <figure class="bubble-shot">
+          <img src="images/t1_config1.png" alt="5 epochs">
+          <figcaption>Best Model Results </figcaption>
+        </figure>
+    
+        <figure class="bubble-shot">
+          <img src="images/t1_config2.png" alt="10 epochs">
+          <figcaption>Second Best Model Results</figcaption>
+        </figure>
+    
+        <figure class="bubble-shot">
+          <img src="images/t1_config3.png" alt="20 epochs">
+          <figcaption>Third Best Model Results</figcaption>
+        </figure>
+
+      </div>
+
+      <div class="bubble-img-grid">
+        <figure class="bubble-shot">
+          <img src="images/t1_plot1.png" alt="5 epochs">
+          <figcaption>Best Model Plot </figcaption>
+        </figure>
+    
+        <figure class="bubble-shot">
+          <img src="images/t1_plot2.png" alt="10 epochs">
+          <figcaption>Second Best Model Plot</figcaption>
+        </figure>
+    
+        <figure class="bubble-shot">
+          <img src="images/t1_plot3.png" alt="20 epochs">
+          <figcaption>Third Best Model Plot</figcaption>
+        </figure>
+
+      </div>
+
+      <div class="bubble-img-grid-tall2">
+        <figure class="bubble-shot">
+          <img src="images/t1_config4.png" alt="5 epochs">
+          <figcaption>Fourth Best Model Results </figcaption>
+        </figure>
+    
+        <figure class="bubble-shot">
+          <img src="images/t1_config5.png" alt="10 epochs">
+          <figcaption>Fifth Best Model Results</figcaption>
+        </figure>
+  
+
+      </div>
+
+      <div class="bubble-img-grid2">
+        <figure class="bubble-shot">
+          <img src="images/t1_plot4.png" alt="5 epochs">
+          <figcaption>Fourth Best Model Plot </figcaption>
+        </figure>
+    
+        <figure class="bubble-shot">
+          <img src="images/t1_plot5.png" alt="10 epochs">
+          <figcaption>Fifth Best Model Plot</figcaption>
+        </figure>
+  
+
+      </div>
+
+          <p>For this task, I trained 10 different attention based Seq2Seq models using different hyperparameter settings, including embedding size, number of hidden units, number of layers, dropout, and learning rate. Across all configurations, the training loss decreased over the 30 epochs. However, the validation loss decreased only during the first few epochs and then started to increase. This suggests that the models started to overfit a little after about 5 or 10 epochs, we can see this in tjhe plot since the gap between training and validation loss became larger as training went on.
+
+            Changing the hyperparameters had some effect on training behavior, but the overall BLEU scores remained very similar at around 0.18. Increasing the number of hidden units from 256 to 384 increased the model capacity and improved some translations, but it also increased training time per epoch and did not change the BLEU score in any relevant way. Increasing the embedding size from 256 to 300 also did not noticeably improve performance. Similarly, using dropout values of 0.2 and 0.3 produced very similar results.
+            
+            Changing the learning rate between 0.005 and 0.003 slightly changed how smoothly the model trained, since the smaller learning rate gave more stable loss curves. However, both learning rates converged to similar values. In general, the models were able to translate very short and simple sentences such as “go .” or “i’m home .”, but they struggled more with longer sentences and produced <unk> tokens a lot since the vocabulary was limited.
+            
+            These experiments show that hyperparameter tuning can change training behavior and model complexity, but the improvements in translation quality were very poor for this task. The results suggest that the model performance is more affected by the dataset size and vocabulary variety than by the specific hyperparameter choices. </p>
+
+
+          <b>Task 2: Attention Visualization. </b>
+
+          <ul class="bubble-list">
+            <li>Pick a few translated sentence pairs and visualize the attention weights (e.g., heatmaps). </li>
+            <li>Discuss what the model is “focusing on” in each case. </li>
+          </ul>
+
+          <div class="bubble-img-grid">
+            <figure class="bubble-shot">
+              <img src="images/t2_map1.png" alt="5 epochs">
+              <figcaption>Heatmap Example 1 </figcaption>
+            </figure>
+        
+            <figure class="bubble-shot">
+              <img src="images/t2_map2.png" alt="10 epochs">
+              <figcaption>Heatmap Example 2</figcaption>
+            </figure>
+        
+            <figure class="bubble-shot">
+              <img src="images/t2_map3.png" alt="20 epochs">
+              <figcaption>Heatmap Example 3</figcaption>
+            </figure>
+    
+          </div>
+
+          <div class="bubble-img-grid1">
+            <figure class="bubble-shot">
+              <img src="images/t2_map4.png" alt="5 epochs">
+              <figcaption>Heatmap Example 4</figcaption>
+            </figure>
+      
+    
+          </div>
+
+          <p>In order to understand how the model makes predictions, we visualized attention weights as heatmaps for four translated sentence pairs. These heatmaps show which input words the model focuses on when it generates each output word. The darker cells show higher attention weights, meaning that the model is paying more attention to that input token at that decoding step.
+
+            In the second example “i lost . to j'ai perdu .”, the model gives the highest attention around the word “lost” when generating “perdu”, which makes sense because those words correspond directly in translation. The word “j’ai” distributes its attention between “i” and “lost”, saying that the English phrase “I lost” maps to the French words “j’ai perdu”.
+            
+            For “he’s calm . to il est mouillé .”, the attention is more spread across the input tokens. The output words “il” and “est” attend to both “he’s” and “calm”, showing that the model is using information from multiple words to generate the translation. The word “mouillé” was incorrectly assigned to “calm,” and its attention is distributed across the sentence rather than focusing strongly on the correct input word, which explains the translation error.
+            
+            In “we are running . to nous <unk> .”, the model correctly focuses on “we” when generating “nous”, which is the correct translation. However, the second word becomes <unk>, probably because the vocabulary does not contain the correct word. The attention weights for this step are spread across “are” and “running”, suggesting the model is trying to combine information from both words but is not able to produce the correct token.
+            
+            Similarly, in “we love traveling . to nous <unk> .”, the model again focuses on “we” when generating “nous”, but the second word becomes <unk>. The attention weights for that step are distributed between “love” and “traveling”, which indicates the model is trying to interpret the action phrase but cant because of vocabulary limitations.
+            
+            Overall, the attention visualizations show that the model learns good alignments between source and target words, especially for simpler sentences. However, when the translation is incorrect or produces <unk>, the attention weights tend to be more spread out, suggesting the model is uncertain about which input word should drive the prediction. </p>
+          
+        </section>
+
+        <section class="projects">
+          <div class="projects-header-wrap">
+              <h2 class="projects-header">Part 2: Multi-head Attention</h2>
+          </div>
+        </section>
+
+    <section class="bubble">
+      <b>Extend the attention mechanism by implementing multi-head attention. Train your model on the English–French dataset.</b>
+
+      <b><br>Task 1: Implement Multi-Head Attention </b>
+
+      <ul class="bubble-list">
+        <li>Replace the single-head attention in your model from Part 1 with your new multi-head attention.</li>
+        <li>Report the training and validation loss curves. Compare the BLEU scores with Part 1 and discuss any changes in performance.</li>
+        <li>Discuss: Does multi-head attention improve translation quality? How does the number of heads (e.g., 1, 2, 4, 8) affect model performance?</li>
+      </ul>
+
+
+
+      <div class="bubble-img-grid-tall2">
+        <figure class="bubble-shot">
+          <img src="images/pt2_t1_h1_m1.png" alt="5 epochs">
+          <figcaption>Best Model with 1 Head </figcaption>
+        </figure>
+    
+        <figure class="bubble-shot">
+          <img src="images/pt2_t1_h1_m2.png" alt="10 epochs">
+          <figcaption>Second Best Model with 1 Head</figcaption>
+        </figure>
+    
+        <figure class="bubble-shot">
+          <img src="images/pt2_t1_h1_m3.png" alt="20 epochs">
+          <figcaption>Third Best Model with 1 Head</figcaption>
+        </figure>
+
+      </div>
+
+      <div class="bubble-img-grid">
+        <figure class="bubble-shot">
+          <img src="images/pt2_t1_h1_p1.png" alt="5 epochs">
+          <figcaption>Best Model with 1 Head plot  </figcaption>
+        </figure>
+    
+        <figure class="bubble-shot">
+          <img src="images/pt2_t1_h1_p2.png" alt="10 epochs">
+          <figcaption>Second Best Model with 1 Head plot </figcaption>
+        </figure>
+    
+        <figure class="bubble-shot">
+          <img src="images/pt2_t1_h1_p3.png" alt="20 epochs">
+          <figcaption>Third Best Model with 1 Head plot</figcaption>
+        </figure>
+
+      </div>
+
+
+
+      <div class="bubble-img-grid-tall2">
+        <figure class="bubble-shot">
+          <img src="images/pt2_t1_h2_m1.png" alt="5 epochs">
+          <figcaption>Best Model with 2 Heads </figcaption>
+        </figure>
+    
+        <figure class="bubble-shot">
+          <img src="images/pt2_t1_h2_m2.png" alt="10 epochs">
+          <figcaption>Second Best Model with 2 Heads</figcaption>
+        </figure>
+    
+        <figure class="bubble-shot">
+          <img src="images/pt2_t1_h2_m3.png" alt="20 epochs">
+          <figcaption>Third Best Model with 2 Heads</figcaption>
+        </figure>
+
+      </div>
+
+      <div class="bubble-img-grid">
+        <figure class="bubble-shot">
+          <img src="images/pt2_t1_h2_p1.png" alt="5 epochs">
+          <figcaption>Best Model with 2 Heads plot  </figcaption>
+        </figure>
+    
+        <figure class="bubble-shot">
+          <img src="images/pt2_t1_h2_p2.png" alt="10 epochs">
+          <figcaption>Second Best Model with 2 Heads plot </figcaption>
+        </figure>
+    
+        <figure class="bubble-shot">
+          <img src="images/pt2_t1_h2_p3.png" alt="20 epochs">
+          <figcaption>Third Best Model with 2 Heads plot</figcaption>
+        </figure>
+
+      </div>
+
+
+
+      <div class="bubble-img-grid-tall2">
+        <figure class="bubble-shot">
+          <img src="images/pt2_t1_h4_m1.png" alt="5 epochs">
+          <figcaption>Best Model with 4 Heads </figcaption>
+        </figure>
+    
+        <figure class="bubble-shot">
+          <img src="images/pt2_t1_h4_m2.png" alt="10 epochs">
+          <figcaption>Second Best Model with 4 Heads</figcaption>
+        </figure>
+    
+        <figure class="bubble-shot">
+          <img src="images/pt2_t1_h4_m3.png" alt="20 epochs">
+          <figcaption>Third Best Model with 4 Heads</figcaption>
+        </figure>
+
+      </div>
+
+      <div class="bubble-img-grid">
+        <figure class="bubble-shot">
+          <img src="images/pt2_t1_h4_p1.png" alt="5 epochs">
+          <figcaption>Best Model with 4 Heads plot  </figcaption>
+        </figure>
+    
+        <figure class="bubble-shot">
+          <img src="images/pt2_t1_h4_p2.png" alt="10 epochs">
+          <figcaption>Second Best Model with 4 Headsplot </figcaption>
+        </figure>
+    
+        <figure class="bubble-shot">
+          <img src="images/pt2_t1_h4_p3.png" alt="20 epochs">
+          <figcaption>Third Best Model with 4 Heads plot</figcaption>
+        </figure>
+
+      </div>
+
+
+
+      <div class="bubble-img-grid-tall2">
+        <figure class="bubble-shot">
+          <img src="images/pt2_t1_h8_m1.png" alt="5 epochs">
+          <figcaption>Best Model with 8 Heads </figcaption>
+        </figure>
+    
+        <figure class="bubble-shot">
+          <img src="images/pt2_t1_h8_m2.png" alt="10 epochs">
+          <figcaption>Second Best Model with 8 Heads</figcaption>
+        </figure>
+    
+        <figure class="bubble-shot">
+          <img src="images/pt2_t1_h8_m3.png" alt="20 epochs">
+          <figcaption>Third Best Model with 8 Heads</figcaption>
+        </figure>
+
+      </div>
+
+      <div class="bubble-img-grid">
+        <figure class="bubble-shot">
+          <img src="images/pt2_t1_h8_p1.png" alt="5 epochs">
+          <figcaption>Best Model with 8 Heads plot  </figcaption>
+        </figure>
+    
+        <figure class="bubble-shot">
+          <img src="images/pt2_t1_h8_p2.png" alt="10 epochs">
+          <figcaption>Second Best Model with 8 Heads plot </figcaption>
+        </figure>
+    
+        <figure class="bubble-shot">
+          <img src="images/pt2_t1_h8_p3.png" alt="20 epochs">
+          <figcaption>Third Best Model with 8 Heads plot</figcaption>
+        </figure>
+
+      </div>
+
+
+        
+          <p>For Part 2, I replaced the single-head attention used in Part 1 with the implemented multi-head attention mechanism and trained the best 3 models with different numbers of heads (1, 2, 4, and 8). The training loss curves show a similar pattern across all configurations displaying that the training loss decreases over the epochs, on the other hamd, the validation loss decreases initially and then increases, suggesting some overfitting after the first few epochs. Regarding the BLEU scores, the results are relatively similar across models, with scores ranging from about 0.15 to 0.20. The best result observed was around 0.20 using two attention heads, which is minimally higher than the best scores from other configurations and very similar to the results obtained in Part 1 with single-head attention.
+
+            In general, using multi-head attention produced only small improvements in translation quality for this dataset. Increasing the number of heads allows the model to attend to different parts of the input simultaneously, which could help capture different relationships between words. However, in my case, increasing the number of heads to more than two did not improve performance. This suggests that for this small dataset and simple sentences, a large number of attention heads does not provide significant  improvement. In general, multi-head attention can increase the model’s power, but it tends to depend on the dataset size and complexity of the translations.</p>
+
+
+          <b>Task 2: Analysis of Attention Heads</b>
+
+          <ul class="bubble-list">
+            <li>Visualize the attention weights for each head on a few translated sentence pairs.</li>
+            <li>Discuss: Do different heads attend to different parts of the input? What kind of diversity or redundancy do you observe across heads?</li>
+          </ul>
+          <div class="bubble-img-grid-tall2">
+            <figure class="bubble-shot">
+              <img src="images/sentence1_1.png" alt="5 epochs">
+              <figcaption>Example Sentence 1 </figcaption>
+            </figure>
+        
+            <figure class="bubble-shot">
+              <img src="images/sentence1_2.png" alt="10 epochs">
+              <figcaption>Example Sentence 1</figcaption>
+            </figure>
+        
+
+          </div>
+
+          <div class="bubble-img-grid-tall2">
+            <figure class="bubble-shot">
+              <img src="images/sentence2_1..png" alt="5 epochs">
+              <figcaption>Example Sentence 2 </figcaption>
+            </figure>
+        
+            <figure class="bubble-shot">
+              <img src="images/sentence2_2.png" alt="10 epochs">
+              <figcaption>Example Sentence 2</figcaption>
+            </figure>
+        
+
+          </div>
+
+
+          <div class="bubble-img-grid-tall2">
+            <figure class="bubble-shot">
+              <img src="images/sentence3_1.png" alt="5 epochs">
+              <figcaption>Example Sentence 3 </figcaption>
+            </figure>
+        
+            <figure class="bubble-shot">
+              <img src="images/sentence3_2.png" alt="10 epochs">
+              <figcaption>Example Sentence 3</figcaption>
+            </figure>
+        
+
+          </div>
+
+          <p>lol</p>
+          
+          
+        </section>
+
+      </div>
+    
+
+
+    <footer class="footer">
+      <p>© <span id="year"></span> Paulina Eguibar</p>
+    </footer>
+  </main>
+
+  <script>
+    const nav = document.querySelector(".nav");
+    const heroName = document.getElementById("heroName");
+    const headerTitle = document.getElementById("headerTitle");
+    const dock = document.getElementById("nameDock");
+    const year = document.getElementById("year");
+    year.textContent = new Date().getFullYear();
+  
+    // Put the same text in the header title
+    headerTitle.textContent = heroName.textContent;
+
+    function updateNavShadow() {
+      nav.classList.toggle("scrolled", window.scrollY > 8);
+    }
+
+    updateNavShadow();
+    window.addEventListener("scroll", updateNavShadow, { passive: true });
+  
+    function clamp01(x){ return Math.max(0, Math.min(1, x)); }
+    function lerp(a,b,t){ return a + (b-a)*t; }
+  
+    // We measure start/end positions WITHOUT transform so it doesn't drift.
+    function measureCenters() {
+      const prev = heroName.style.transform;
+      heroName.style.transform = "none";
+      const from = heroName.getBoundingClientRect();
+      heroName.style.transform = prev;
+  
+      const to = dock.getBoundingClientRect();
+  
+      return {
+        fromX: from.left + from.width/2,
+        fromY: from.top + from.height/2,
+        toX: to.left + to.width/2,
+        toY: to.top + to.height/2
+      };
+    }
+  
+    let centers = measureCenters();
+  
+    function animate() {
+      const end = 280;                // scroll distance to fully dock
+      const t = clamp01(window.scrollY / end);
+  
+      const dx = centers.toX - centers.fromX;
+      const dy = centers.toY - centers.fromY;
+  
+      // Move and shrink hero title toward dock
+      const scale = lerp(1, 0.30, t);
+      heroName.style.transform = `translate(${dx*t}px, ${dy*t}px) scale(${scale})`;
+  
+      // Cross-fade into the header title (so it never "disappears")
+      const heroOpacity = lerp(1, 0, Math.max(0, (t - 0.55) / 0.45));  // fades out late
+      const headOpacity = lerp(0, 1, Math.max(0, (t - 0.55) / 0.45));  // fades in late
+      heroName.style.opacity = String(heroOpacity);
+      headerTitle.style.opacity = String(headOpacity);
+  
+      // Prevent hero title from blocking clicks once it's basically docked
+      heroName.style.pointerEvents = (t > 0.92) ? "none" : "auto";
+    }
+  
+    animate();
+    window.addEventListener("scroll", animate, { passive: true });
+    window.addEventListener("resize", () => {
+      centers = measureCenters();
+      animate();
+    });
+  </script>
+  
+
+
+</body>
+</html>
+
+
