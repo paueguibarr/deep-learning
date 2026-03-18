@@ -431,7 +431,17 @@
 
           </div>
 
-          <p>lol</p>
+          <p>For this task we can see that the attention visualizations show that different heads focus on different parts of the input sentence, but also there is some redundancy between heads.
+
+For the sentence “go . translated  va !”, some heads attend strongly to the punctuation token “.” while another head focuses almost entirely on the word “go.” This suggests that different heads may capture different types of information, for example, some heads focus on the lexical word while others attend to sentence structure such as punctuation.
+
+In the sentence “i lost . trnaslated to  j’ai perdu .”, the attention patterns show more diversity. One head strongly attends to the word “i” when predicting both “j’ai” and “perdu,” aqnd another head focuses attention between “lost” and the punctuation token. This shows that some heads capture grammatical relationships such as subject alignment, while others focus more on content words or sentence boundaries.
+
+For the slightly longer sentence “i’m home . translated to  je suis chez moi .”, the diversity across heads becomes more clear. One head focuses heavily on “i’m” when generating several target tokens, while another head attends more to “home.” Some heads also put more attention on punctuation. This suggests that different heads specialize in capturing different parts of the translation process, such as subject alignment, semantic meaning, or sentence structure.
+
+At the same time, there is also some redundancy across heads, since multiple heads sometimes attend to similar tokens, for example several heads focusing on the punctuation token or the first input word. This redundancy shows that not all heads learn completely different roles.
+
+Overall, the results show that multi-head attention created diversity in how the model attends to the input sequence, allowing different heads to capture additional information .</p>
           
           
         </section>
