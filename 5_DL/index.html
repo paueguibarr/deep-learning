@@ -1,0 +1,414 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Project 5</title>
+  <link rel="stylesheet" href="../styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" sizes="32x32" href="../icon3.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../icon3.png">
+
+</head>
+
+<body>
+    <!-- Sticky nav -->
+    <header class="nav">
+      <div class="nav-inner">
+        <a class="nav-link" href="../index.html">Home</a>
+        <a class="nav-link" href="https://paueguibarr.github.io/index.html">CV Site</a>
+  
+        <!-- This is where the name will "land" -->
+        <div class="nav-name-slot" aria-hidden="true">
+          <div id="nameDock">
+            <span id="headerTitle" class="header-title"></span>
+          </div>
+        </div>
+  
+        <div class="nav-right">
+          <a class="nav-link" href="#projects">Projects</a>
+          <a class="nav-link nav-btn" href="https://-hawk-.notion.site/Spring-2026-Deep-Learning-Class-Schedule-2efdfc3276088041be51f1dc2dc14285" target="_blank" rel="noreferrer">Class Site</a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Hero -->
+  <main id="home">
+    <section class="hero">
+      <!-- Background grid -->
+      <div class="bg-grid" aria-hidden="true"></div>
+
+      <!-- The big name that animates -->
+      <h1 id="heroName" class="hero-name">Agentic AI for LaTeX Compression</h1>
+      <p class="hero-sub">LLMs, VLMs, and Agentic Decision-Making Pipeline</p>
+
+      <div class="scroll-hint" aria-hidden="true">
+        <div class="ring">Read More</div>
+        <div class="chev">⌄</div>
+      </div>
+    </section>
+
+    <div class="page">
+
+    <section id="projects" class="projects">
+      <div class="projects-header-wrap">
+        <h2 class="projects-header">Objectives</h2>
+      </div>
+    </section>
+
+    <section class="bubble">
+        <ul class="bubble-list">
+        <li>In this project, I designed and implemented an <b>agentic AI pipeline</b> to automatically compress a LaTeX project while preserving visual quality.</li>
+        <li>The system integrates:</li>
+        <ul>
+            <li>Large Language Models (LLMs) for decision-making</li>
+            <li>Vision-Language Models (VLMs) for visual quality evaluation</li>
+            <li>Deterministic Python tools for execution</li>
+        </ul>
+        <li>The goal is to simulate an AI agent that can <b>analyze, decide, act, and verify</b> with constraints such as limited budget and quality requirements.</li>
+        </ul>
+    </section>
+
+
+<section class="projects">
+<div class="projects-header-wrap">
+    <h2 class="projects-header">Pipeline Overview</h2>
+</div>
+</section>
+
+<section class="bubble">
+<p>
+    I decided to follow an iterative agentic loop. Instead of applying a fixed compression script, the pipeline dynamically adapts its behavior based on intermediate results.
+</p>
+
+<ul class="bubble-list">
+    <li><b>Step 1: Preprocessing</b> – Copy project, remove duplicate and unused files</li>
+    <li><b>Step 2: Compilation</b> – Compile LaTeX to generate a baseline PDF</li>
+    <li><b>Step 3: Decision (LLM)</b> – Choose compression strategy (safe, medium, aggressive)</li>
+    <li><b>Step 4: Action</b> – Apply image compression and optional PDF compression</li>
+    <li><b>Step 5: Evaluation (VLM)</b> – Compare visual quality before vs after</li>
+    <li><b>Step 6: Iteration</b> – Adjust strategy and repeat if needed</li>
+</ul>
+
+<p>
+    This loop continues until both size constraints and visual quality requirements are satisfied.
+</p>
+
+<div class="bubble-img-grid1">
+  <figure class="bubble-shot">
+    <img src="images/AgenticPipeline.png" alt="Agentic Pipeline">
+    <figcaption>Agentic Pipeline</figcaption>
+  </figure>
+
+</div>
+</section>
+
+<section class="projects">
+    <div class="projects-header-wrap">
+      <h2 class="projects-header">Agentic Design</h2>
+    </div>
+  </section>
+  
+  <section class="bubble">
+    <p>
+      My approach is designed as an <b>agentic pipeline</b> rather than a fixed script. The key idea is that the model does not directly perform compression, but instead <b>decides what actions to take</b> based on the current state of the system.
+    </p>
+  
+    <p>
+      The pipeline follows an observe -> decide -> act -> evaluate loop:
+    </p>
+  
+    <ul class="bubble-list">
+      <li><b>Observe:</b> Measure project size and PDF size</li>
+      <li><b>Decide:</b> LLM selects a compression strategy</li>
+      <li><b>Act:</b> Python tools apply compression</li>
+      <li><b>Evaluate:</b> VLM checks visual quality</li>
+      <li><b>Iterate:</b> System refines strategy based on feedback</li>
+    </ul>
+  
+    <p>
+      I decided to separate <b>reasoning (LLM)</b> from <b>execution (Python tools)</b>, making the agent model more reliable and easier to control.
+    </p>
+  </section>
+
+  <section class="projects">
+    <div class="projects-header-wrap">
+      <h2 class="projects-header">Models Used</h2>
+    </div>
+  </section>
+  
+  <section class="bubble">
+    <p>
+      My system uses both language and vision models, each responsible for a different part of the pipeline.
+    </p>
+  
+    <ul class="bubble-list">
+      <li><b>LLM (GPT-4o-mini):</b> selects compression strategies based on current size and history</li>
+      <li><b>VLM (GPT-4o):</b> evaluates visual quality and selects important pages to inspect</li>
+    </ul>
+  
+    <p>
+      The LLM is used for structured decision-making with constrained outputs, while the VLM is used to analyze visual differences between original and compressed PDFs.
+    </p>
+  
+    <p>
+      This separation allows the system to combine reasoning with perceptual evaluation.
+    </p>
+
+    <section class="bubble">
+        <h3>LLM Prompt (Strategy Selection)</h3>
+      
+        <p>
+          The LLM acts as the decision-maker of the agent. It receives the current system state and selects the next compression strategy.
+        </p>
+      
+        <pre>
+          You are the orchestrator of a LaTeX compression agent.
+            
+          Goal:
+          - Project zip size must be under {state["zip_limit_mb"]} MB.
+          - PDF size must be under {state["pdf_limit_mb"]} MB.
+          - Visual quality must remain acceptable.
+          
+          Current state:
+          - Iteration: {state["iteration"]}
+          - Zip size: {state["zip_mb"]:.2f} MB
+          - PDF size: {state["pdf_mb"]:.2f} MB
+          - Previous strategies tried: {state["history"]}
+          
+          Choose the next compression strategy.
+          
+          Choose one: safe, medium, aggressive, stop.
+          
+          Rules:
+          - Choose "stop" only if both size goals are met.
+          - If size is slightly above the limit, choose "safe".
+          - If size is clearly above the limit, choose "medium".
+          - If previous attempts failed and size is still too high, choose "aggressive".
+          - If a previous strategy had quality_ok=false, choose a less aggressive strategy than that attempt.
+          - Do not repeat strategies that already failed.
+          - Return ONLY valid JSON, no markdown, no code fence:
+          
+          Format:
+          {{"strategy": "safe|medium|aggressive|stop", "reason": "short reason"}}
+
+        </pre>
+      
+        <p>
+          The prompt ensures structured reasoning and that the model behaves deterministically, making the pipeline stable and predictable.
+        </p>
+      </section>
+
+      <section class="bubble">
+        <h3>VLM Prompt (Page Selection)</h3>
+      
+        <p>
+          To reduce cost, the system does not evaluate every page. Instead, the VLM selects the most important pages using a contact sheet.
+        </p>
+      
+        <pre>
+        You are helping evaluate PDF compression quality.
+        Look at this contact sheet of a PDF with {page_count} pages.
+        Each thumbnail is labeled with a 0-based page number.
+        
+        Choose up to {max_pages} pages that are most important to inspect after compression.
+        
+        Prioritize:
+        - pages with large images
+        - pages with figures
+        - pages with tables
+        - pages with small visual details
+        - visually dense pages
+        
+        - Return ONLY valid JSON, no markdown, no code fence:
+        Format: 
+        {{"pages": [0, 2, 5], "reason": "short reason"}}
+        """
+        </pre>
+      
+        <p>
+          This step allows the agent to focus on the most visually sensitive parts of the document while minimizing API usage.
+        </p>
+      </section>
+
+      <section class="bubble">
+        <h3>VLM Prompt (Quality Evaluation)</h3>
+      
+        <p>
+          The VLM compares screenshots of the original and compressed PDF to determine whether visual quality is acceptable.
+        </p>
+      
+        <pre>
+          before_imgs: list of og images to compare
+          after_imgs: list of compressed imgs to compare
+          For each image to compare, check image quality and return true or false
+          """
+          content = [
+              {
+                  "type": "text",
+                  "text": """
+                          Compare each before/after pair of PDF screenshots.
+                          
+                          The before image appears first, followed by the compressed after image.
+                          Evaluate whether the compressed PDF quality is visually acceptable.
+                          
+                          Check:
+                          - text readability
+                          - image clarity
+                          - layout consistency
+                          - no severe artifacts
+                          - no obvious distortion or over-blurring
+                          
+                          - Return ONLY valid JSON, no markdown, no code fence:
+                          Format: 
+                          {"quality_ok": true|false, "reason": "short reason"}
+              }
+        </pre>
+      
+        <p>
+          This enables the system to perform visual validation automatically, replacing manual inspection with a learned perception model.
+        </p>
+      </section>
+
+      <p>
+        I made sure to enforce structured JSON outputs from all models, to allow seamless integration between model decisions and deterministic Python execution.
+      </p>
+  </section>
+
+
+  <section class="projects">
+    <div class="projects-header-wrap">
+      <h2 class="projects-header">Visual Quality Evaluation</h2>
+    </div>
+  </section>
+  
+  <section class="bubble">
+    <p>
+      Instead of checking every page of the PDF, I used a more efficient approach:
+    </p>
+  
+    <ul class="bubble-list">
+      <li>Generate a <b>contact sheet</b> of all pages</li>
+      <li>Ask the VLM to select the most visually important pages</li>
+      <li>Render only those pages before and after compression</li>
+      <li>Compare them using the VLM</li>
+    </ul>
+  
+    <p>
+      This significantly reduces cost while still focusing on the most relevant parts of the document, such as figures, tables, and dense content.
+    </p>
+  </section>
+
+  <section class="projects">
+    <div class="projects-header-wrap">
+      <h2 class="projects-header">Results & Discussion</h2>
+    </div>
+  </section>
+  
+  <section class="bubble">
+    <p>
+      My approach successfully reduced both project size and PDF size while preserving acceptable visual quality.
+    </p>
+  
+    <p>
+      In many cases, the agent selected a <b>medium compression strategy</b> first, then adjusted based on feedback from the VLM. The iterative loop allowed the system to balance size reduction and quality preservation effectively.
+    </p>
+  
+    <p>
+      One important observation is that performance did not depend heavily on using the most powerful models. Instead, the structured pipeline and feedback loop were the main contributors to success.
+    </p>
+  </section>
+
+  <section class="projects">
+    <div class="projects-header-wrap">
+      <h2 class="projects-header">Final Reflection</h2>
+    </div>
+  </section>
+  
+  <section class="bubble">
+    <p>
+      This project shows how combining LLMs, VLMs, and deterministic tools can create a practical and efficient AI system.
+    </p>
+  
+    <p>
+      The most important takeaway is that agentic behavior does not come from the model alone, but from how the system is structured. Even relatively lightweight models can perform well when integrated into a well-designed pipeline with clear feedback loops.
+    </p>
+  
+    <p>
+      Overall, this project reflects how modern AI systems are more commonly built as decision-driven pipelines rather than single rigid models.
+    </p>
+  </section>
+  </div>
+  </main>
+
+  <script>
+    const nav = document.querySelector(".nav");
+    const heroName = document.getElementById("heroName");
+    const headerTitle = document.getElementById("headerTitle");
+    const dock = document.getElementById("nameDock");
+    const year = document.getElementById("year");
+    year.textContent = new Date().getFullYear();
+  
+    // Put the same text in the header title
+    headerTitle.textContent = heroName.textContent;
+
+    function updateNavShadow() {
+      nav.classList.toggle("scrolled", window.scrollY > 8);
+    }
+
+    updateNavShadow();
+    window.addEventListener("scroll", updateNavShadow, { passive: true });
+  
+    function clamp01(x){ return Math.max(0, Math.min(1, x)); }
+    function lerp(a,b,t){ return a + (b-a)*t; }
+  
+    // We measure start/end positions WITHOUT transform so it doesn't drift.
+    function measureCenters() {
+      const prev = heroName.style.transform;
+      heroName.style.transform = "none";
+      const from = heroName.getBoundingClientRect();
+      heroName.style.transform = prev;
+  
+      const to = dock.getBoundingClientRect();
+  
+      return {
+        fromX: from.left + from.width/2,
+        fromY: from.top + from.height/2,
+        toX: to.left + to.width/2,
+        toY: to.top + to.height/2
+      };
+    }
+  
+    let centers = measureCenters();
+  
+    function animate() {
+      const end = 280;                // scroll distance to fully dock
+      const t = clamp01(window.scrollY / end);
+  
+      const dx = centers.toX - centers.fromX;
+      const dy = centers.toY - centers.fromY;
+  
+      // Move and shrink hero title toward dock
+      const scale = lerp(1, 0.30, t);
+      heroName.style.transform = `translate(${dx*t}px, ${dy*t}px) scale(${scale})`;
+  
+      // Cross-fade into the header title (so it never "disappears")
+      const heroOpacity = lerp(1, 0, Math.max(0, (t - 0.55) / 0.45));  // fades out late
+      const headOpacity = lerp(0, 1, Math.max(0, (t - 0.55) / 0.45));  // fades in late
+      heroName.style.opacity = String(heroOpacity);
+      headerTitle.style.opacity = String(headOpacity);
+  
+      // Prevent hero title from blocking clicks once it's basically docked
+      heroName.style.pointerEvents = (t > 0.92) ? "none" : "auto";
+    }
+  
+    animate();
+    window.addEventListener("scroll", animate, { passive: true });
+    window.addEventListener("resize", () => {
+      centers = measureCenters();
+      animate();
+    });
+  </script>
+
+</body>
+</html>
