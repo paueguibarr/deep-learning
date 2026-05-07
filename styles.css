@@ -961,8 +961,22 @@ body{
 .bubble-img-grid1{
   margin-top: 14px;
   display: grid;
-  grid-template-columns: repeat(1, minmax(0, 1fr));
+  grid-template-columns: 1fr;
   gap: 12px;
+}
+
+.bubble-img-grid1 .bubble-shot{
+  margin: 0;
+  width: 100%;
+}
+
+.bubble-img-grid1 .bubble-shot img{
+  width: 100%;
+  height: auto;
+  display: block;
+
+  border-radius: 18px;
+  object-fit: contain;
 }
 
 .bubble-shot{
